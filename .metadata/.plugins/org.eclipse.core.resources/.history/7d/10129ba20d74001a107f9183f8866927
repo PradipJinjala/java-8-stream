@@ -1,0 +1,27 @@
+package java8.stream;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class CreateStream {
+
+	public static void main(String[] args) {
+		getStreamWithList();
+		getUniqueNumber();
+	}
+
+	private static void getUniqueNumber() {
+		
+	}
+
+	/**
+	 * Gets the stream with list.
+	 *
+	 * @return the stream with list
+	 */
+	private static void getStreamWithList() {
+		List<String> list = Arrays.asList("pradip","bhavesh","mahesh","arvind","Vijo","Nilo");
+		list.stream().forEach(System.out::println);
+	}
+	
+}

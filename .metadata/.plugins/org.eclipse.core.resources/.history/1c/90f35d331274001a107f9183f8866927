@@ -1,0 +1,45 @@
+package java8.stream;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Stream;
+
+public class CreateStream {
+
+	public static void main(String[] args) {
+		getStreamWithList();
+		getUniqueNumber();
+		getStreamFilter();
+	}
+
+	private static void getStreamFilter() {
+		List<Employee> empList = new ArrayList();
+		empList.add(new Employee("MAHESH", "ICICI", 45000));
+		empList.add(new Employee("JAGO", "SBI", 4000));
+		empList.add(new Employee("PRADIP", "ICICI", 25000));
+		empList.add(new Employee("BHAVESH", "INDUS", 14000));
+	}
+
+	/**
+	 * Gets the unique number.
+	 *
+	 * @return the unique number
+	 */
+	private static void getUniqueNumber() {
+		Stream<UUID> stream = Stream.generate(UUID::randomUUID);
+		stream.limit(10).forEach(System.out::println); 
+	}
+
+	/**
+	 * Gets the stream with list.
+	 *
+	 * @return the stream with list
+	 */
+	private static void getStreamWithList() {
+		List<String> list = Arrays.asList("pradip","bhavesh","mahesh","arvind","Vijo","Nilo");
+		list.stream().forEach(System.out::println);
+	}
+	
+}

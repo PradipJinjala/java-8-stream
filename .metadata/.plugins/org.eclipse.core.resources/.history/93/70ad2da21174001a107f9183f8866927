@@ -1,0 +1,14 @@
+package java8.stream;
+
+public class Employee {
+	rivate String name;
+    private String account;
+    private Integer salary;
+ 
+    public Employee(String name, String account, Integer salary) {
+        super();
+        this.name = name;
+        this.account = account;
+        this.salary = salary;
+    }
+}

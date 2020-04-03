@@ -1,0 +1,141 @@
+package java8.stream;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class CreateStream {
+
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
+	public static void main(String[] args) {
+		System.out.println("--Stream With List--");
+		getStreamWithList();
+		
+		System.out.println("\n--Stream With Unique Number--");
+		getUniqueNumber();
+
+		System.out.println("\n--Stream With Filter--");
+		getStreamFilter();
+		
+		System.out.println("\n--Stream With Map--");
+		getStreamWithMap();
+		
+		System.out.println("\n--Stream With Collect--");
+		getStreamWithCollect();
+		
+		System.out.println("\n--Stream With Concat Example--");
+		getStreamWithConcat();
+		
+		System.out.println("\n--Stream With Matchs Example--");
+		getStreamWithMatch();
+		
+		System.out.println("\n--Stream With Matchs Find Example--");
+		getStreamWithMatchWithFind();
+	}
+
+	private static void getStreamWithMatchWithFind() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Gets the stream with match.
+	 *
+	 * @return the stream with match
+	 */
+	private static void getStreamWithMatch() {
+		List<Employee> emptList = getEmployeeList();
+		boolean result = emptList.stream().anyMatch(e -> e.getName().matches("PRADIP"));
+		System.out.println(result);
+		
+		result = emptList.stream().allMatch(e -> e.getName().matches("PRADIP"));
+		System.out.println(result);
+		
+		result = emptList.stream().noneMatch(e -> e.getName().matches("PRADIP"));
+		System.out.println(result);
+	}
+
+	/**
+	 * Gets the stream with concat.
+	 *
+	 * @return the stream with concat
+	 */
+	private static void getStreamWithConcat() {
+		List<Employee> firstList = getEmployeeList();
+		List<Employee> secondList = getEmployeeList();		
+		Stream.concat(firstList.stream(), secondList.stream()).forEach(System.out::println);
+	}
+
+	/**
+	 * Gets the stream with collect.
+	 *
+	 * @return the stream with collect
+	 */
+	private static void getStreamWithCollect() {
+		List<Employee> empList = getEmployeeList();
+		empList.stream().filter(e -> e.getSalary() > 15000).collect(Collectors.toList()).forEach(System.out::println);
+	}
+
+	/**
+	 * Gets the employee list.
+	 *
+	 * @return the employee list
+	 */
+	private static List<Employee> getEmployeeList() {
+		List<Employee> empList = new ArrayList<Employee>();
+		empList.add(new Employee("MAHESH", "ICICI", 45000));
+		empList.add(new Employee("JAGO", "SBI", 4000));
+		empList.add(new Employee("PRADIP", "ICICI", 25000));
+		empList.add(new Employee("BHAVESH", "INDUS", 14000));
+		return empList;
+	}
+
+	/**
+	 * Gets the stream filter.
+	 *
+	 * @return the stream filter
+	 */
+	private static void getStreamFilter() {
+		List<Employee> empList = getEmployeeList();
+		
+		empList.stream().filter(e -> e.getSalary() > 15000).forEach(System.out::println);
+	}
+
+	/**
+	 * Gets the unique number.
+	 *
+	 * @return the unique number
+	 */
+	private static void getUniqueNumber() {
+		Stream<UUID> stream = Stream.generate(UUID::randomUUID);
+		stream.limit(10).forEach(System.out::println); 
+	}
+
+	/**
+	 * Gets the stream with list.
+	 *
+	 * @return the stream with list
+	 */
+	private static void getStreamWithList() {
+		List<String> list = Arrays.asList("pradip","bhavesh","mahesh","arvind","Vijo","Nilo");
+		list.stream().forEach(System.out::println);
+	}
+
+	/**
+	 * Gets the stream with map.
+	 *
+	 * @return the stream with map
+	 */
+	private static void getStreamWithMap() {
+		List<String> list = Arrays.asList("pradip","bhavesh","mahesh","arvind","Vijo","Nilo");
+		list.stream().map(e -> e.toUpperCase()).forEach(System.out::println);;
+	}
+	
+}
